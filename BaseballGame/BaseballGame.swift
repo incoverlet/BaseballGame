@@ -31,15 +31,25 @@ class BaseballGame{
           // 4. 정답과 유저의 입력값을 비교하여 스트라이크/볼을 출력하기
           var strike = 0
           var ball = 0
-          let myArray = String(answer).compactMap { Int(String($0)) }
-        
-          
+          let answerArray = String(answer).map { String($0) }
+          let inputArray = input!.map({ String($0) })
+          for i in answerArray.indices {
+              if answerArray[i] == inputArray[i]{
+                  strike += 1
+              }else if input!.contains(answerArray[i]){
+                  ball += 1
+              }
+          }
+
           // 만약 정답이라면 break 호출하여 반복문 탈출
           if strike == 3 {
               print("정답입니다!")
               break;
           } else {
               print("\(strike)스트라이크 \(ball)볼")
+              //초기화
+              strike = 0
+              ball = 0
           }
           
       }
